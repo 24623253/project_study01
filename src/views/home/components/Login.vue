@@ -37,7 +37,7 @@ export default {
           { min: 5, max: 15, message: "长度在 5 到 15 个字符", trigger: "blur" }
         ],
         psw: [
-          { required: true, message: "请输入账户", trigger: "blur" },
+          { required: true, message: "请输入密码", trigger: "blur" },
           { min: 5, max: 15, message: "长度在 5 到 15 个字符", trigger: "blur" }
         ]
       }
@@ -56,7 +56,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$router.push({name:'index',params:{by:'byLogin'}})
+          // this.$router.push({name:'index',params:{by:'byLogin'}})
         } else {
           console.log("error submit!!");
           return false;

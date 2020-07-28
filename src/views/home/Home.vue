@@ -25,8 +25,8 @@
           :class="['fillWidth',{videoFilter}]"
           v-on:canplay="canplay"
         >
-          <source src="../../assets/video/home1.mp4" type="video/mp4" />浏览器不支持 video 标签，建议升级浏览器。
-          <source src="../../assets/video/home1.mp4" type="video/webm" />浏览器不支持 video 标签，建议升级浏览器。
+          <source src="../../assets/video/home4.mp4" type="video/mp4" />浏览器不支持 video 标签，建议升级浏览器。
+          <source src="../../assets/video/home4.mp4" type="video/webm" />浏览器不支持 video 标签，建议升级浏览器。
         </video>
         <div class="poster hidden" v-if="!vedioCanPlay">
           <img :style="fixStyle" src="PATH_TO_JPEG" alt />
@@ -66,6 +66,7 @@ export default {
     }
   },
   mounted: function() {
+    console.log(process.env.VUE_APP_BASE_API)
     window.onresize = () => {
       const windowWidth = document.body.clientWidth;
       this.windowWidthCenter = windowWidth / 2;
