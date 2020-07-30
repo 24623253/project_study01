@@ -1,4 +1,11 @@
 console.log(process.env.VUE_APP_BASE_API)
+const path = require('path')
+
+//封装目录函数
+function resolve(dir){
+  return  path.join(__dirname,dir)
+}
+
 // vue.config.js 基本配置方法
 module.exports = {
   // 项目部署的基础路径
@@ -28,7 +35,7 @@ module.exports = {
   //  vueLoader: {},
   
   // 生产环境是否生成 sourceMap 文件，默认true，若不需要生产环境的sourceMap，可以设置为false，加速生产环境的构建
-  productionSourceMap: true,
+  productionSourceMap: false,
   
   // css相关配置
   css: {
@@ -40,7 +47,14 @@ module.exports = {
    loaderOptions: {},
    // 启用 CSS modules for all css / pre-processor files.
    // 这个选项不会影响 `*.vue` 文件
-   modules: false
+  //  modules: false
+  },
+
+  // 配置简写路径
+  chainWebpack:(config)=>{
+    config.resolve.alias
+      .set('@',resolve('src'))
+      .set('@assets',resolve('src/assets'))
   },
   
   // 在生产环境下为 Babel 和 TypeScript 使用 `thread-loader`
@@ -57,18 +71,23 @@ module.exports = {
   devServer: {
    open: process.platform === 'darwin',
    host: '0.0.0.0',//如果是真机测试，就使用这个IP
-   port: 1234,
+   port: 5000,
    https: false,
-   hotOnly: false,
+   hotOnly: true, // 热更新
+   open:true, // 配置自动启动浏览器
    proxy: null, // 设置代理
-   // proxy: {
-   //     '/api': {
-   //         target: '<url>',
-   //         ws: true,
-   //         changOrigin: true
-   //     }
-   // },
-   before: app => {}
+  //  proxy: {
+  //      '/auth': {
+  //         // target: 'http://127.0.0.1:5000/',
+  //         target: 'http://192.168.3.42:8001/',
+  //         //  ws: true,
+  //         changOrigin: true,
+  //         pathRewrite:{
+  //           '^/auth':'/auth'
+  //         }
+  //      }
+  //  },
+  //  before: app => {}
   },
   // 第三方插件配置
   pluginOptions: {

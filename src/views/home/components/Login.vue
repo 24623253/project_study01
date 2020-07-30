@@ -43,7 +43,14 @@ export default {
       }
     };
   },
+  mounted(){
+    console.log(this.$api.post,"<<<<<")
+    // this,init()
+  },
   methods: {
+    init(){
+      this.$api.get()
+    },
     mouseEnterLogin() {
       this.$emit("mouse", "mouseEnterLogin");
     },
@@ -57,6 +64,16 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           // this.$router.push({name:'index',params:{by:'byLogin'}})
+          // this.$api.Login()
+          let params ={
+            email:'test',
+            password:'test',
+            token:'1',
+
+          }
+          this.$api.postJSON('/auth/login',params).then(res=>{
+            console.log(res.data)
+          })
         } else {
           console.log("error submit!!");
           return false;
