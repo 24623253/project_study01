@@ -48,18 +48,23 @@ export default {
     // this,init()
   },
   methods: {
+
     init(){
       this.$api.get()
     },
+
     mouseEnterLogin() {
       this.$emit("mouse", "mouseEnterLogin");
     },
+
     mouseLeaveLogin() {
       this.$emit("mouse", "mouseLeaveLogin");
     },
+
     mouseover(e){
       console.log(e)
     },
+
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
@@ -80,6 +85,7 @@ export default {
         }
       });
     }
+    
   }
 };
 </script>
